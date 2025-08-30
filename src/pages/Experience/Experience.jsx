@@ -1,13 +1,7 @@
 import React from "react";
 import { Code2, Network, Layers } from "lucide-react";
 
-const ExperienceCard = ({
-  title,
-  company,
-  period,
-  description,
-  icon: Icon,
-}) => (
+const ExperienceCard = ({ title, company, location, period, description, icon: Icon }) => (
   <div className="group relative overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
     {/* Glass morphism effect */}
     <div className="absolute inset-0 backdrop-blur-lg bg-white/5 rounded-lg" />
@@ -27,9 +21,12 @@ const ExperienceCard = ({
         <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
           {title}
         </h3>
-        <div className="flex justify-between items-center text-gray-300">
+        <div className="flex flex-col space-y-1 text-gray-300">
           <span className="font-semibold text-blue-400">{company}</span>
-          <span className="text-sm font-mono bg-blue-500/10 px-3 py-1 rounded-full">
+          {location && (
+            <span className="text-sm text-gray-400">{location}</span>
+          )}
+          <span className="text-sm font-mono bg-blue-500/10 px-3 py-1 rounded-full w-fit">
             {period}
           </span>
         </div>
@@ -46,27 +43,22 @@ const ExperienceSection = () => {
     {
       icon: Network,
       title: "Assistant Software Developer (MERN Stack)",
-      company: "SpidronTech LLP, Pune",
+      company: "SpidronTech LLP",
+      location: "Pune, Maharashtra, India",
       period: "May 2023 – Present",
       description:
-        "Working as a MERN Stack Developer, contributing to scalable web and mobile application development. Responsibilities include building REST APIs, implementing authentication, integrating third-party services, and collaborating in Agile teams.",
+        "Contributing as a MERN Stack Developer to build scalable web and mobile applications. Responsibilities include developing REST APIs, implementing authentication, integrating third-party services, and collaborating within Agile teams. Total Experience: 2.3 Years.",
     },
-    {
-      icon: Layers,
-      title: "Java Full Stack Course (Training)",
-      company: "Java Full Stack Program",
-      period: "Oct 2022 – May 2023",
-      description:
-        "Completed intensive training in Java Full Stack Development. Learned Core Java, Spring Boot, Hibernate, REST APIs, SQL/NoSQL databases, and frontend basics to strengthen backend and enterprise-level development skills.",
-    },
-    {
-      icon: Code2,
-      title: "Software Engineer (Academic & Freelance Projects)",
-      company: "Freelance / Academic",
-      period: "2021 – 2022",
-      description:
-        "Built academic and freelance projects using JavaScript, Node.js, React, and MongoDB. Gained hands-on experience in full-stack application development before formal training.",
-    },
+  {
+  icon: Layers,
+  title: "Java Full Stack Course (Training)",
+  company: "Java Full Stack Program",
+  location: "Pune, Maharashtra, India",
+  period: "Oct 2022 – May 2023",
+  description:
+    "Completed intensive training in Java Full Stack Development. Gained strong knowledge of Core Java, Advanced Java, SQL, HTML, CSS, and JavaScript, along with exposure to backend development using Java frameworks. Strengthened problem-solving and full-stack fundamentals to prepare for enterprise-level development.",
+},
+
   ];
 
   return (

@@ -9,12 +9,14 @@ import Skills from "./pages/Skills/Skills";
 import Education from "./pages/Education/Education";
 
 import { Route, Routes } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   const [isOnePage, setIsOnePage] = useState(false); // Toggle state
 
   return (
     <>
+    <ScrollToTop/>
       <Header />
       {/* Conditional Rendering */}
       {isOnePage ? (

@@ -12,38 +12,39 @@ import { motion } from "framer-motion";
 
 const EducationSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const educationData = [
-    {
-      degree: "Bachelor of Technology (B.Tech) in Computer Science & Engineering",
-      school: "Ashokrao Mane Group of Institutions, Wathar",
-      mascot: "🎓",
-      year: "2019 – 2023",
-      achievements: ["CGPA: 8.1", "Specialization: Software Development"],
-      skills: ["Data Structures", "Web Development", "DBMS", "Operating Systems"],
-      description:
-        "Developed strong foundations in computer science and hands-on skills in full stack development. Built multiple academic projects and gained exposure to teamwork and software engineering practices.",
-    },
-    {
-      degree: "Higher Secondary Certificate (HSC)",
-      school: "Mahavir Junior College, Kolhapur",
-      mascot: "📗",
-      year: "2017 – 2019",
-      achievements: ["Percentage: 65%", "Stream: Science"],
-      skills: ["Physics", "Chemistry", "Mathematics", "Biology"],
-      description:
-        "Focused on science stream with emphasis on analytical problem-solving and logical reasoning through core science subjects.",
-    },
-    {
-      degree: "Secondary School Certificate (SSC)",
-      school: "New Highschool, Ichalkaranji",
-      mascot: "📘",
-      year: "2017",
-      achievements: ["Percentage: 83%"],
-      skills: ["Mathematics", "Science", "English", "Social Studies"],
-      description:
-        "Achieved excellent academic performance with strong foundation in mathematics and science, preparing for higher education in the science stream.",
-    },
-  ];
+const educationData = [
+  {
+    degree: "Bachelor of Technology (B.Tech) in Mechanical Engineering",
+    school: "Dr. J. J. Magdum College of Engineering, Jaysingpur",
+    mascot: "🎓",
+    year: "2018 – 2022",
+    achievements: ["CGPA: 8.0"],
+    skills: ["Mechanical Engineering Fundamentals", "Thermodynamics", "Design & Manufacturing", "Engineering Mechanics"],
+    description:
+      "Completed B.Tech in Mechanical Engineering with a strong academic record. Developed problem-solving, analytical, and project management skills while working on academic projects and practical assignments.",
+  },
+  {
+    degree: "Higher Secondary Certificate (HSC)",
+    school: "Govindrao Junior College, Ichalkaranji",
+    mascot: "📗",
+    year: "2017 – 2018",
+    achievements: ["Percentage: 82.15%", "Stream: Science"],
+    skills: ["Physics", "Chemistry", "Mathematics"],
+    description:
+      "Focused on core science subjects with emphasis on analytical thinking and logical problem-solving, laying the foundation for engineering studies.",
+  },
+  {
+    degree: "Secondary School Certificate (SSC)",
+    school: "Maharashtra State Board of Secondary & Higher Secondary Education",
+    mascot: "📘",
+    year: "2015 – 2016",
+    achievements: ["Percentage: 85.80%"],
+    skills: ["Mathematics", "Science", "English", "Social Studies"],
+    description:
+      "Excelled in academics with a strong foundation in mathematics and science, preparing for higher education in the science stream.",
+  },
+];
+
 
 
   const containerVariants = {

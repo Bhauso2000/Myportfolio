@@ -1,38 +1,40 @@
 import { ReactLenis } from "lenis/react";
 import { useTransform, motion, useScroll } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import PropTypes from "prop-types";
 
 const projects = [
   {
     title: "📊 Customized CRM",
-    description:
-      "Developed the frontend of a customized CRM for the Business Services industry using React to manage leads, contacts, proposals, and project workflows. Designed dynamic UI for enhanced user experience with React (frontend) and .NET (backend).",
-    src: "crm.jpg",
-    link: "https://i.postimg.cc/J75CKyrs/Annotation-2025-04-01-203959.png", // replace with your CRM screenshot
+    points: [
+      "Developed the frontend of a customized CRM for the Business Services industry using React to manage and track projects from initiation to delivery.",
+      "Built user interfaces to manage leads, contacts, proposals, and project workflows with React.",
+      "Built functionalities to manage leads, contacts, proposals, and project workflows with .NET (backend) and React (frontend).",
+      "Designed and maintained a dynamic, user-friendly UI for an enhanced user experience.",
+    ],
     color: "#4CAF50",
-    githubLink: "https://github.com/seraprogrammer/custom-crm", // replace if repo available
-    liveLink: "#", // replace if hosted
   },
   {
-    title: "🚚 Luggage Transportation App",
-    description:
-      "Built a platform connecting luggage senders and travelers for intercity and international transportation. Implemented workflows for transactions, pickup, and delivery. Used React (frontend) + .NET (backend).",
-    src: "luggage.jpg",
-    link: "https://i.postimg.cc/J4jPVFY0/Annotation-2025-04-01-204723.png", // replace with screenshot
+    title: "🚚 Luggage Transportation Application",
+    points: [
+      "Developed a platform to connect luggage senders and travelers for transportation across cities, states, and countries using .NET and React.",
+      "Created a workflow for seamless transaction between senders and travelers, allowing users to swap roles.",
+      "Built a smooth system for luggage pickup, transportation, and delivery with React (frontend) and .NET (backend logic).",
+    ],
     color: "#2196F3",
-    githubLink: "https://github.com/seraprogrammer/luggage-app", // replace if repo available
-    liveLink: "#", // replace if hosted
   },
   {
-    title: "🛒 Online Marketplace",
-    description:
-      "Developed an E-Commerce platform for selling collectibles with Node.js, Express.js, MongoDB, Stripe API, JWT authentication, and React Native mobile app. Supported secure payments, dynamic product activation, and seamless user transactions.",
-    src: "marketplace.jpg",
-    link: "https://i.postimg.cc/cHQr4fpR/Annotation-2025-04-01-205350.png", // replace with screenshot
+    title: "🛒 Online Marketplace for Selling Collectibles",
+    points: [
+      "Developed an E-Commerce application for selling collectibles, ensuring high performance and reliability with Node.js and React Native.",
+      "Built task-based RESTful APIs with Node.js and implemented authentication and authorization mechanisms using JWT.",
+      "Integrated Stripe for secure and seamless transactions.",
+      "Implemented dynamic product activation and deactivation based on date and time, enhancing platform flexibility.",
+      "Used MongoDB with Mongoose for efficient data management and storage in the backend.",
+      "Designed a user-friendly mobile application with React Native for seamless product browsing and transactions.",
+      "Technologies used: Node.js, Express.js, React Native, MongoDB, Stripe API, JWT Authentication, Axios.",
+    ],
     color: "#FF5722",
-    githubLink: "https://github.com/seraprogrammer/collectibles-marketplace", // replace if repo available
-    liveLink: "#", // replace if hosted
   },
 ];
 
@@ -42,50 +44,6 @@ export default function Projects() {
     target: container,
     offset: ["start start", "end end"],
   });
-
-  useEffect(() => {
-    // Add specific styles for 1366x768 resolution
-    const style = document.createElement("style");
-    style.textContent = `
-      @media screen and (width: 1366px) and (height: 768px),
-             screen and (width: 1367px) and (height: 768px),
-             screen and (width: 1368px) and (height: 769px) {
-        .project-card {
-          scale: 0.85;
-          margin-top: -5vh;
-        }
-        .project-container {
-          height: 90vh;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Resolution check function
-    const checkResolution = () => {
-      const isTargetResolution =
-        window.innerWidth >= 1360 &&
-        window.innerWidth <= 1370 &&
-        window.innerHeight >= 760 &&
-        window.innerHeight <= 775;
-
-      if (isTargetResolution) {
-        document.documentElement.style.setProperty("--project-scale", "0.85");
-        document.documentElement.style.setProperty("--project-margin", "-5vh");
-      } else {
-        document.documentElement.style.setProperty("--project-scale", "1");
-        document.documentElement.style.setProperty("--project-margin", "0");
-      }
-    };
-
-    checkResolution();
-    window.addEventListener("resize", checkResolution);
-
-    return () => {
-      document.head.removeChild(style);
-      window.removeEventListener("resize", checkResolution);
-    };
-  }, []);
 
   return (
     <ReactLenis root>
@@ -97,15 +55,12 @@ export default function Projects() {
               <Card
                 key={`p_${i}`}
                 i={i}
-                url={project.link}
                 title={project.title}
                 color={project.color}
-                description={project.description}
+                points={project.points}
                 progress={scrollYProgress}
                 range={[i * 0.25, 1]}
                 targetScale={targetScale}
-                githubLink={project.githubLink}
-                liveLink={project.liveLink}
               />
             );
           })}
@@ -115,18 +70,7 @@ export default function Projects() {
   );
 }
 
-function Card({
-  i,
-  title,
-  description,
-  url,
-  color,
-  progress,
-  range,
-  targetScale,
-  githubLink,
-  liveLink,
-}) {
+function Card({ i, title, points, color, progress, range, targetScale }) {
   const container = useRef(null);
   const scale = useTransform(progress, range, [1, targetScale]);
 
@@ -142,143 +86,53 @@ function Card({
           transform: `scale(var(--project-scale, 1))`,
           marginTop: "var(--project-margin, 0)",
         }}
-        className="relative -top-[25%] h-auto w-[90%] md:w-[85%] lg:w-[75%] xl:w-[65%] origin-top project-card"
+        className="relative -top-[20%] h-auto w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] origin-top project-card"
         whileHover={{
-          y: -8,
+          y: -10,
           transition: { duration: 0.3 },
         }}
       >
-        {/* Modern split card design */}
-        <div className="w-full flex flex-col md:flex-row bg-zinc-900 rounded-2xl overflow-hidden shadow-xl">
-          {/* Image section - full width on mobile, 55% on desktop */}
-          <div className="w-full md:w-[55%] h-[250px] md:h-[400px] lg:h-[450px] relative overflow-hidden">
-            <motion.img
-              src={url}
-              alt={title}
-              className="w-full h-full object-cover"
-              initial={{ scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4 }}
+        {/* Modern project card */}
+        <div className="w-full flex flex-col bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 rounded-2xl overflow-hidden shadow-2xl p-8 border border-gray-800 hover:border-gray-700 transition-colors">
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-4">
+            <div
+              className="w-3 h-3 rounded-full shadow-md"
+              style={{ backgroundColor: color }}
             />
-
-            {/* Colored overlay on hover */}
-            <motion.div
-              className="absolute inset-0"
-              style={{ backgroundColor: color, mixBlendMode: "overlay" }}
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 0.3 }}
-              transition={{ duration: 0.3 }}
-            />
-
-            {/* Project number */}
-            <div className="absolute top-4 left-4 md:top-6 md:left-6 bg-black/50 backdrop-blur-md text-white px-3 py-1 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium">
-              Project {i + 1}
-            </div>
+            <div className="h-[1px] w-20 bg-gray-700" />
           </div>
 
-          {/* Content section - full width on mobile, 45% on desktop */}
-          <div className="w-full md:w-[45%] p-6 md:p-8 lg:p-10 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-3 mb-4 md:mb-6">
-                <div
-                  className="w-2 h-2 md:w-3 md:h-3 rounded-full"
-                  style={{ backgroundColor: color }}
-                />
-                <div className="h-[1px] w-12 md:w-20 bg-gray-600" />
-              </div>
+          {/* Title */}
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 tracking-tight">
+            {title}
+          </h2>
 
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-4">
-                {title}
-              </h2>
-              <p className="text-sm md:text-base text-gray-400 leading-relaxed line-clamp-3 md:line-clamp-none max-w-md">
-                {description}
-              </p>
-            </div>
+          {/* Bullet Points */}
+          <ul className="list-disc list-inside space-y-3 text-base md:text-lg text-gray-400 leading-relaxed">
+            {points.map((point, idx) => (
+              <li key={idx} className="pl-1">
+                {point}
+              </li>
+            ))}
+          </ul>
 
-            <div className="mt-4 md:mt-auto pt-4">
-              <div className="w-full h-[1px] bg-gray-800 mb-4 md:mb-6" />
-
-              <div className="flex items-center gap-4">
-                {/* GitHub Link */}
-                <motion.a
-                  href={githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2"
-                  whileHover={{ y: -3 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke={color}
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                  </svg>
-                  <span
-                    className="text-xs md:text-sm font-medium"
-                    style={{ color }}
-                  >
-                    Code
-                  </span>
-                </motion.a>
-
-                {/* Live Link */}
-                <motion.a
-                  href={liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2"
-                  whileHover={{ y: -3 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke={color}
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                  </svg>
-                  <span
-                    className="text-xs md:text-sm font-medium"
-                    style={{ color }}
-                  >
-                    Live
-                  </span>
-                </motion.a>
-              </div>
-            </div>
-          </div>
+          {/* Subtle divider */}
+          <div className="mt-6 h-[1px] w-full bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
         </div>
       </motion.div>
     </div>
   );
 }
 
-// Add PropTypes validation
+// PropTypes validation
 Card.propTypes = {
   i: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  points: PropTypes.arrayOf(PropTypes.string).isRequired,
   color: PropTypes.string.isRequired,
   progress: PropTypes.object.isRequired,
   range: PropTypes.array.isRequired,
   targetScale: PropTypes.number.isRequired,
-  githubLink: PropTypes.string.isRequired,
-  liveLink: PropTypes.string.isRequired,
 };
+        

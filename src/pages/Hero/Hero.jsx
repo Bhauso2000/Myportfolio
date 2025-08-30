@@ -42,26 +42,29 @@ const GridBackground = () => {
 
 export default function Hero() {
   const words = [
-    "Full-Stack Developer",
-    "MERN Stack Enthusiast",
-    "Java Full Stack Certified",
+    "MERN Stack Developer",
+    "React Native Developer",
+    "Full-Stack JavaScript Engineer",
     "Passionate Learner & Coder",
+    "Building Scalable Web & Mobile Apps",
   ];
+
 
   const [code] = useState(`
 const profile = {
-    name: 'Bhauso Shinde',
-    title: 'Full-Stack Developer | MERN Enthusiast',
+    name: "Bhauso Shinde",
+    title: "MERN & React Native Developer",
     skills: [
-        'Java', 'Spring Boot', 'React', 'NextJS',
-        'MongoDB', 'MySQL', 'PostgreSQL', 'Git',
-        'Docker', 'AWS', 'Linux', 'TailwindCSS'
+        "JavaScript", "React", "Next.js", "React Native",
+        "Node.js", "Express.js", "MongoDB", "MySQL", "PostgreSQL",
+        "Java", "Spring Boot", "Git", "Docker", "AWS", "Linux",
+        "TailwindCSS"
     ],
     hardWorker: true,
     quickLearner: true,
     problemSolver: true,
     courseCompleted: "Java Full Stack (Oct 2022 - May 2023)",
-    hireable: function() {
+    hireable() {
         return (
             this.hardWorker &&
             this.problemSolver &&
@@ -69,7 +72,7 @@ const profile = {
         );
     }
 };
-  `);
+`);
 
   useEffect(() => {
     Prism.highlightAll();
@@ -141,8 +144,8 @@ const profile = {
 
               {/* Description */}
               <p className="text-base sm:text-xl text-gray-300/90 leading-relaxed mb-8">
-                Enthusiastic Full-Stack Developer 🚀 | Skilled in Java & MERN
-                Stack 💻 | Building scalable apps and always eager to learn ✨
+                Enthusiastic Full-Stack Developer 🚀 | Skilled in React Native & MERN Stack 💻 |
+                Passionate about building scalable web & mobile applications 📱 | Always eager to learn and grow ✨
               </p>
 
               {/* CTA Button - Resume only */}
